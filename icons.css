@@ -1,0 +1,39 @@
+@font-face{font-family:"Instrument Sans";font-weight:400;font-display:swap;src:url("fonts/instrument-sans-latin-400-normal.woff2") format("woff2")}@font-face{font-family:"Instrument Sans";font-weight:500;font-display:swap;src:url("fonts/instrument-sans-latin-500-normal.woff2") format("woff2")}@font-face{font-family:"Instrument Sans";font-weight:600;font-display:swap;src:url("fonts/instrument-sans-latin-600-normal.woff2") format("woff2")}@font-face{font-family:"IBM Plex Mono";font-weight:400;font-display:swap;src:url("fonts/ibm-plex-mono-latin-400-normal.woff2") format("woff2")}@font-face{font-family:"IBM Plex Mono";font-weight:500;font-display:swap;src:url("fonts/ibm-plex-mono-latin-500-normal.woff2") format("woff2")}
+@font-face{font-family:"Phosphor";src:url("fonts/Phosphor.woff2") format("woff2");font-display:block}
+.ph{font-family:"Phosphor"!important;speak:never;font-style:normal;font-weight:normal;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased}
+.ph.ph-arrow-left:before{content:"\e058"}
+.ph.ph-camera:before{content:"\e10e"}
+.ph.ph-caret-down:before{content:"\e136"}
+.ph.ph-caret-right:before{content:"\e13a"}
+.ph.ph-chat-circle:before{content:"\e168"}
+.ph.ph-check:before{content:"\e182"}
+.ph.ph-clock:before{content:"\e19a"}
+.ph.ph-compass:before{content:"\e1c8"}
+.ph.ph-info:before{content:"\e2ce"}
+.ph.ph-magnifying-glass:before{content:"\e30c"}
+.ph.ph-printer:before{content:"\e3dc"}
+.ph.ph-question:before{content:"\e3e8"}
+.ph.ph-seal-check:before{content:"\e606"}
+.ph.ph-storefront:before{content:"\e470"}
+.ph.ph-warning-circle:before{content:"\e4e2"}
+.ph.ph-x:before{content:"\e4f6"}
+.ph.ph-x-circle:before{content:"\e4f8"}
+@font-face{font-family:"Phosphor-Fill";src:url("fonts/Phosphor-Fill.woff2") format("woff2");font-display:block}
+.ph-fill{font-family:"Phosphor-Fill"!important;speak:never;font-style:normal;font-weight:normal;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased}
+.ph-fill.ph-arrow-left:before{content:"\e058"}
+.ph-fill.ph-camera:before{content:"\e10e"}
+.ph-fill.ph-caret-down:before{content:"\e136"}
+.ph-fill.ph-caret-right:before{content:"\e13a"}
+.ph-fill.ph-chat-circle:before{content:"\e168"}
+.ph-fill.ph-check:before{content:"\e182"}
+.ph-fill.ph-clock:before{content:"\e19a"}
+.ph-fill.ph-compass:before{content:"\e1c8"}
+.ph-fill.ph-info:before{content:"\e2ce"}
+.ph-fill.ph-magnifying-glass:before{content:"\e30c"}
+.ph-fill.ph-printer:before{content:"\e3dc"}
+.ph-fill.ph-question:before{content:"\e3e8"}
+.ph-fill.ph-seal-check:before{content:"\e606"}
+.ph-fill.ph-storefront:before{content:"\e470"}
+.ph-fill.ph-warning-circle:before{content:"\e4e2"}
+.ph-fill.ph-x:before{content:"\e4f6"}
+.ph-fill.ph-x-circle:before{content:"\e4f8"}
