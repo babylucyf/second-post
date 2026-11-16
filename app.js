@@ -237,14 +237,14 @@ function render() {
   document.getElementById('app').innerHTML = `
     <header class="hdr">
       <button class="circle m-only" data-act="back" aria-label="Back" style="${v.noBack || !S.hist.length ? 'visibility:hidden' : ''}">${ic('arrow-left')}</button>
-      <div class="brand d-only"><span class="mark">LR</span><b>Linden Row</b><span class="ctx">•&nbsp; Returns${v.ctx ? ' &nbsp;•&nbsp; ' + v.ctx : ''}</span></div>
+      <div class="brand d-only"><span class="lrlogo" aria-label="Linden Row"><span>LINDEN ROW</span><i></i><small>LONDON</small></span><span class="ctx">•&nbsp; Returns${v.ctx ? ' &nbsp;•&nbsp; ' + v.ctx : ''}</span></div>
       <div class="m-title m-only" style="display:none">${v.title}</div>
       <div class="links d-only"><button class="pill" data-act="shop">${ic('storefront')}Back to the shop</button><button class="pill" data-act="go:help">${ic('question')}Help</button></div>
       <button class="circle m-only" data-act="go:help" aria-label="Help">${ic('question')}</button>
     </header>
     <div class="demo"><button data-act="demoToggle" aria-expanded="${S.demo}">${ic('compass')}Demo menu</button>${S.demo ? `<div class="menu">${jumps.map(g => `<p>${g[0]}</p>${g[1].map(j => `<button data-act="${j[1]}">${j[0]}</button>`).join('')}`).join('')}</div>` : ''}</div>${stepper}
     <main>${v.html}</main>
-    <p class="foot">Concept project by Ugonwa Ohagwasi. Linden Row is a demo brand and every order, date and amount is made up. Royal Mail, InPost and Evri are named as real UK carriers and are not affiliated.</p>
+    <p class="foot"><span class="pb">Returns by <svg width="16" height="16" viewBox="0 0 56 56" aria-hidden="true"><rect width="56" height="56" rx="16" fill="#191919"/><path d="M22 20H33C38.5 20 42 24 42 29C42 34 38.5 38 33 38H17M27 14L21 20L27 26" stroke="#c8a97a" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg><b>second post</b></span>Concept project by Ugonwa Ohagwasi. Linden Row is a demo brand and every order, date and amount is made up. Royal Mail, InPost and Evri are named as real UK carriers and are not affiliated.</p>
     ${modal ? `<div class="dim" data-act="close"><div class="dialog" role="dialog" aria-modal="true" aria-label="${modal[0]}"><h2>${modal[0]}</h2><p>${modal[1]}</p><div class="row">${modal[2]}</div></div></div>` : ''}
     ${S.toast ? `<div class="toast" role="status">${S.toast}</div>` : ''}`;
   const mt = document.querySelector('.m-title'); if (mt) mt.style.display = '';

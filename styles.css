@@ -258,3 +258,10 @@ h3{font-size:16px;line-height:24px;font-weight:500;margin:0}
   .demo .menu{bottom:auto;top:38px;left:auto;right:16px}
   .foot{padding-bottom:200px}
 }
+
+.lrlogo{display:inline-flex;flex-direction:column;align-items:center;gap:5px;line-height:1}
+.lrlogo span{font-weight:500;font-size:16px;letter-spacing:.28em;margin-right:-.28em}
+.lrlogo i{width:28px;height:1.5px;background:var(--brand)}
+.lrlogo small{font-size:8px;letter-spacing:.4em;margin-right:-.4em;color:var(--ink2)}
+.pb{display:flex;align-items:center;gap:6px;margin-bottom:8px;color:var(--ink2)}
+.pb b{font-weight:600;color:var(--ink);letter-spacing:-.01em}
