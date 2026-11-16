@@ -238,7 +238,7 @@ function render() {
     <header class="hdr">
       <button class="circle m-only" data-act="back" aria-label="Back" style="${v.noBack || !S.hist.length ? 'visibility:hidden' : ''}">${ic('arrow-left')}</button>
       <div class="brand d-only"><span class="lrlogo" aria-label="Linden Row"><span>LINDEN ROW</span><i></i><small>LONDON</small></span><span class="ctx">•&nbsp; Returns${v.ctx ? ' &nbsp;•&nbsp; ' + v.ctx : ''}</span></div>
-      <div class="m-title m-only" style="display:none">${v.title}</div>
+      <div class="m-title m-only" style="display:none">${v.title === 'Linden Row' ? '<span class="lrlogo" aria-label="Linden Row"><span>LINDEN ROW</span><i></i><small>LONDON</small></span>' : v.title}</div>
       <div class="links d-only"><button class="pill" data-act="shop">${ic('storefront')}Back to the shop</button><button class="pill" data-act="go:help">${ic('question')}Help</button></div>
       <button class="circle m-only" data-act="go:help" aria-label="Help">${ic('question')}</button>
     </header>
