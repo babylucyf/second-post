@@ -23,6 +23,8 @@ const STEP_OF = { order: 1, reason: 2, faulty: 2, offer: 3, size: 3, send: 4, co
 
 const fresh = () => ({ screen: 'start', hist: [], picked: ['sweat'], idx: 0, ans: {}, send: 'po', label: false, day: 'Tue 18', slot: '10am to 12pm', tab: 'postcode', tries: 0, err: false, loading: false, photos: 1, postcode: 'SE15 4QF', track: 'transit', modal: null, toast: null, demo: false, soldOut: false });
 let S = fresh();
+const PHONE = matchMedia('(max-width:900px)');
+const onPhone = () => PHONE.matches;
 const cur = () => S.picked[S.idx];
 const ans = (k) => (S.ans[k] = S.ans[k] || {});
 const first = () => ans(S.picked[0]);
@@ -172,15 +174,19 @@ const V = {
   },
   code() {
     const p = POINTS[S.send === 'door' ? 'po' : S.send]; const other = S.send === 'po' ? 'InPost' : 'Royal Mail';
-    const tip = { po: ['Take this code with you', 'Send it to your phone or print this page. It scans from a screen or from paper.'], locker: ['Scan this at the locker screen', 'No scanner? Tap Send a parcel and type the 8 letters. A medium locker fits a folded sweatshirt.'], evri: ['Show this code at the till', 'The shop scans it and prints the label for you. Ask for a receipt.'] }[S.send] || [];
+    const phone = onPhone();
+    const tip = phone
+      ? { po: ['Show this at the counter', 'Turn your screen brightness up. Staff scan it straight from your phone.'], locker: ['Scan this at the locker screen', 'No scanner? Tap Send a parcel and type the 8 letters. A medium locker fits a folded sweatshirt.'], evri: ['Show this code at the till', 'The shop scans it and prints the label for you. Ask for a receipt.'] }[S.send] || []
+      : { po: ["You'll need this on your phone", 'The counter scans it from a phone screen, so send it there before you go. A printed copy works too.'], locker: ["You'll need this on your phone", 'The locker scans it from a phone screen, so send it there before you go.'], evri: ["You'll need this on your phone", 'The till scans it from a phone screen, so send it there before you go.'] }[S.send] || [];
+    const keep = phone ? btn('Save to my phone', "toast:Saved to your photos. It works without signal.") : btn('Send it to my phone', 'toast:Sent by text to the number on your order') + (S.send === 'po' ? link('Print this page instead', 'toast:This would open your print dialog') : '');
     return { ctx: 'Return 7HQ4-K2MP', title: 'Return 7HQ4-K2MP', noBack: true, html: `<div class="duo"><div class="a">${head("Confirmed • we've emailed you a copy", 'Your return code')}<div class="gap24"></div><div class="card"><div class="code-head"><img class="logo" src="${A}${p.logo}" alt="${p.carrier}"><div><div class="meta">${p.carrier} • ${p.where}</div><h3>${p.how}</h3></div></div><div class="qr"><img src="${A}qr.png" alt="QR code for return 7HQ4-K2MP"></div>
       <div class="pair"><div><small>From</small><b><img class="ava" src="${A}ada.jpg" alt="">Ada Okafor</b></div><div class="rt"><small>Use by</small><b>Thu 20 Nov</b></div></div><div class="pair"><div><small>To</small><b>Linden Row</b></div><div class="rt"><small>Return</small><b>${S.picked.length} item${S.picked.length > 1 ? 's' : ''}</b></div></div>
       <div class="readout"><span class="meta">Code won't scan? Read this out</span><div class="ch">${'7HQ4K2MP'.split('').map(c => `<span>${c}</span>`).join('')}</div></div></div></div>
-      <div class="b">${banner('info', tip[0], tip[1])}<div class="acts v">${btn('Send it to my phone', 'toast:Sent to the phone number on your order')}${link(`Switch to ${other}`, 'switch')}${link('Change or cancel this return', 'modal:cancel')}</div><p class="meta muted d-only" style="text-align:center">Demo: use the Demo menu, bottom left, to jump ahead to tracking.</p></div></div>` };
+      <div class="b">${banner('info', tip[0], tip[1])}<div class="acts v">${keep}${link(`Switch to ${other}`, 'switch')}${link('Change or cancel this return', 'modal:cancel')}</div><p class="meta muted d-only" style="text-align:center">Demo: use the Demo menu, bottom left, to jump ahead to tracking.</p></div></div>` };
   },
   label() {
     return { ctx: 'Return 7HQ4-K2MP', title: 'Return 7HQ4-K2MP', noBack: true, html: `<div class="duo"><div class="a">${head('For a postbox or a printer at home', 'Your return label')}<div class="gap24"></div><div class="labelp"><b>ROYAL MAIL TRACKED RETURNS 48</b><div class="bars"></div><b>RM 7HQ4 K2MP 4GB</b><hr style="border:0;border-top:1px solid var(--line);margin:12px 0">TO<br>Linden Row Returns<br>Unit 4, Copeland Yard<br>London SE15 3SN<br><br>FROM&nbsp; Ada Okafor, SE15 4QF<br>ITEMS ${S.picked.length} &nbsp;·&nbsp; USE BY THU 20 NOV</div></div>
-      <div class="b">${banner('info', 'Print it on A4 and tape it on', 'Fold along the line and cover any old labels or barcodes on the bag.')}<div class="acts v">${btn('Download label (PDF)', 'toast:This is a concept, so there is no file to download')}${link('Show a code instead', 'useCode')}${link('Change or cancel this return', 'modal:cancel')}</div></div></div>` };
+      <div class="b">${onPhone() ? banner('info', 'Print it from a computer', "Phones don't print easily, so we'll email you the label. Open it on any computer, print on A4 and tape it on.") : banner('info', 'Print it on A4 and tape it on', 'Fold along the line and cover any old labels or barcodes on the bag.')}<div class="acts v">${onPhone() ? btn('Email me the label', 'toast:Sent to the email on your order') : btn('Download label (PDF)', 'toast:This is a concept, so there is no file to download')}${link('Show a code instead', 'useCode')}${link('Change or cancel this return', 'modal:cancel')}</div></div></div>` };
   },
   booked() {
     const f = first();
@@ -249,6 +255,7 @@ function render() {
     ${S.toast ? `<div class="toast" role="status">${S.toast}</div>` : ''}`;
   const mt = document.querySelector('.m-title'); if (mt) mt.style.display = '';
 }
+PHONE.addEventListener('change', () => render());
 function go(name, keep) { if (!keep) S.hist.push(S.screen); S.screen = name; S.demo = false; S.modal = null; render(); window.scrollTo(0, 0); }
 function toast(t) { S.toast = t; render(); clearTimeout(toast.t); toast.t = setTimeout(() => { S.toast = null; render(); }, 2400); }
 const seedStory = () => { S.picked = S.picked.length ? S.picked : ['sweat']; const f = first(); f.reason = f.reason || 'small'; f.offer = f.offer || 'exchange'; f.size = f.size || 'L'; };
